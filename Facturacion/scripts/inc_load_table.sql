@@ -3,7 +3,8 @@ PROCEDURE incremental_load_table
  (
   my_insert IN VARCHAR2,
   my_query IN VARCHAR2,
-  my_table IN VARCHAR2
+  my_table IN VARCHAR2,
+  my_adr IN VARCHAR2 
  )
 IS
   conteo INTEGER;
@@ -25,8 +26,9 @@ BEGIN
 				) 
 	SELECT sysdate  AS "fecha_log", 
 		   :1 AS "reference_log", 
-		   :2 AS "count_log" 
+		   :2 AS "count_log",
+           :3 AS "adr_log"
 	FROM   dual
             ';
-  EXECUTE IMMEDIATE log_me USING my_table, conteo;
+  EXECUTE IMMEDIATE log_me USING my_table, conteo, my_adr;
 END;
