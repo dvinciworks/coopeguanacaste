@@ -15,6 +15,9 @@ BEGIN
 
   -- realizar conteo de los nuevos registros para efectos del log
   EXECUTE IMMEDIATE my_query INTO conteo;
+  dbms_output.put_line(conteo);
+  dbms_output.put_line('---');
+  dbms_output.put_line(my_query);
 
   -- registrar la ejecución en la bitácora my_log
   log_me := '
